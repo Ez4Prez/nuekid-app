@@ -1,32 +1,68 @@
 #!/usr/bin/env python3
 
 from app import app
-from models import db, Hotel, Customer, Review
+from models import db, Location, Event
 
 with app.app_context():
     
-    Hotel.query.delete()
-    Customer.query.delete()
-    Review.query.delete()
+    Location.query.delete()
 
-    hotels = []
-    hotels.append(Hotel(name="Marriott", image="https://www.travelandleisure.com/thmb/D-J3iY0h_IBxkZmTQldWUXAuHQg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/renaissance-new-york-midtown-hotel-NYCHOTELS0420-051ef9d668174c978edbb1ee8f6b93e4.jpg"))
-    hotels.append(Hotel(name="Holiday Inn", image="https://www.ihgplc.com/en/-/media/newsrelease_placeholder/holiday-inn-johor-bahru-city-centre---deluxe-king.jpg"))
-    hotels.append(Hotel(name="Hampton Inn", image="https://images.trvl-media.com/lodging/11000000/10970000/10961600/10961545/5b998347.jpg"))
 
-    customers = []
-    customers.append(Customer(first_name="Alice", last_name="Baker"))
-    customers.append(Customer(first_name="Barry", last_name="Smith"))
-    customers.append(Customer(first_name="Chris", last_name="Jones"))
+    locations = []
+    
+    locations.append(Location(
+        name='Sid Luckman Field',
+        address='1463-1469 McDonald Ave, Brooklyn, NY 11230',
+        coordinates="40.617482, -73.973687"
+    ))
+    locations.append(Location(
+        name='Brooklyn Bridge Park Pier 5',
+        address='334 Furmant St, Brooklyn, NY 11201',
+        coordinates='40.694438, -74.001049'
+    ))
+    locations.append(Location(
+        name='Globall Sports Centers',
+        address='1561 Bedford Ave, Brooklyn, NY 11225',
+        coordinates="40.668893, -73.955491"
+    ))
+    locations.append(Location(
+        name='Verrazano Sports Complex',
+        address='1990 Shore Pkwy, Brooklyn, NY 11214',
+        coordinates="40.587382, -73.992417"
+    ))
+    locations.append(Location(
+        name='Buddy Keaton Field',
+        address='Bergen St. &, Schenectady Ave, Brooklyn, NY 11213',
+        coordinates="40.674682, -73.934162"
+    ))
+    locations.append(Location(
+        name='Prospect Park',
+        address='Prospect Heights, Brooklyn, New York, NY 11215',
+        coordinates="40.661041, -73.968445"
+    ))
 
-    reviews = []
-    reviews.append(Review(hotel_id=1, customer_id=1, rating=5))
-    reviews.append(Review(hotel_id=2, customer_id=1, rating=5))
-    reviews.append(Review(hotel_id=1, customer_id=2, rating=4))
-    reviews.append(Review(hotel_id=1, customer_id=1, rating=3))
+    # events = []
 
-    db.session.add_all(hotels)
-    db.session.add_all(customers)
-    db.session.add_all(reviews)
+    # events.append(Event(
+    #     title="6 Vs 6 Flag Football",
+    #     description="Flag Football this Saturday!",
+
+
+    # ))
+
+
+
+    
+
+    
+
+    db.session.add_all(locations)
+
     db.session.commit()
-    print("🌱 Hotels, Customers, and Reviews successfully seeded! 🌱")
+    print("🌱 Locations successfully seeded! 🌱")
+
+    # id = db.Column(db.Integer, primary_key=True)
+    # name = db.Column(db.String)
+    # address = db.Column(db.String)
+    # longitude = db.Columng(db.String)
+    # latitude = db.Column(db.String)

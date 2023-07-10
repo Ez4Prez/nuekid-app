@@ -1,13 +1,47 @@
 import MapPage from './MapPage'
 import NavBar from './NavBar'
-import Friends from './Friends'
+import HostEvent from './HostEvent'
 import MyCalendar from './MyCalendar'
-import About from './About'
+// import {Map, Marker, Popup, TileLayer} from 'react-leaflet'
 
 import {useState, useEffect} from 'react'
 import {Route, Switch} from 'react-router-dom';
 
 function App() {
+
+
+// const [locations, setLocations] = useState([])
+
+// useEffect(() => {
+//   fetch("http://127.0.0.1:7000/locations")
+//   .then(resp => resp.json())
+//   .then(locationsData => setLocations(locationsData))
+// },[])
+
+
+
+
+
+  return (
+    <div className="App">
+      <NavBar />
+      <Switch>
+        <Route path='/host-event'>
+          <HostEvent />
+        </Route>
+        <Route path="/mycalendar">
+          <MyCalendar/>
+        </Route>
+        <Route exact path="/">
+          <MapPage />
+        </Route>
+      </Switch>
+
+    </div>
+  );
+}
+
+export default App;
 
 
 
@@ -49,28 +83,3 @@ function App() {
 //      })}
 //   else (setFormInput({...formInput, [event.target.name]: event.target.value}))
 // }
-
-
-
-
-
-  return (
-    <div className="App">
-      <NavBar />
-      <Switch>
-        <Route path='/friends'>
-          <Friends />
-        </Route>
-        <Route path="/mycalendar">
-          <MyCalendar/>
-        </Route>
-        <Route exact path="/">
-          <MapPage/>
-        </Route>
-      </Switch>
-
-    </div>
-  );
-}
-
-export default App;

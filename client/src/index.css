@@ -27,10 +27,41 @@ h4 {
   font-size: large;
 }
 
-.map-conatainer {
-  height: 50vh;
-  width: 50%;
+.box {
+  background-color: lightblue;
+  border: 1px solid blue;
+  min-height: 50px;
+  font-size: 2rem;
 
+}
+
+.map-container {
+  height: 55vh;
+  width: 45vw;
+  border: solid black 3px;
+  margin-top: 100px;
+  margin-left: 725px;
+
+}
+
+#event-container {
+  height: 100vh;
+  width: 40vw;
+  border: solid black 3px;
+  margin-top: 2px;
+  margin-left: 50px;
+}
+
+#event-container-btn {
+  border: solid black 3px;
+}
+
+#location-container {
+  height: 55vh;
+  width: 45vw;
+  border: solid black 3px;
+  margin-top: 100px;
+  margin-left: 725px;
 }
 
 
@@ -48,12 +79,12 @@ img {
   margin-top: 100px;
 }
 
-.nav-bar {
+#nav-bar {
   gap: 50px;
   background-color: white;
   text-decoration-color: white;
   display: flex;
-  gap: 20px;
+  gap: 10px;
   height: 30px;
   align-items: center;
   padding-left: 20px;
@@ -91,7 +122,7 @@ a {
   justify-content: center;
 }
 
-.app-name {
+#app-name {
   font-size: xx-large;
   color: rgb(53, 85, 226);
   margin-top: 10vh;
@@ -103,7 +134,13 @@ a {
   margin-top: 5vw;
 }
 
-.sell-item-form {
+#host-event-container {
+  height: 60vh;
+  width: 50vw;
+  margin-top: 50px;
+}
+
+#host-event-form {
   justify-content: center;
   margin-top: 10vh;
 }

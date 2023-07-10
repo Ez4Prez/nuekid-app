@@ -4,13 +4,13 @@ function NavBar(){
 
 return (
     <>
-    <nav className="nav-bar">
-            <NavLink to="/home">Home</NavLink>
+    <nav id="nav-bar">
+            <NavLink to="/">Home</NavLink>
             <NavLink exact to="/mycalendar">My Calendar</NavLink>
             <NavLink to="/meet">Meet</NavLink>
-            <NavLink to="/friends">Friends</NavLink>
+            <NavLink to="/host-event">Host</NavLink>
             
-            <div className="searchbar">
+            <div id="searchbar">
             <label htmlFor="search"></label>
             <input
                 type="text"
@@ -21,7 +21,7 @@ return (
         </div>
     </nav>
         
-        <h1 className="app-name">Nue Kid</h1>
+        <h1 id="app-name">Nue Kid</h1>
 
 
     </>
@@ -31,7 +31,3 @@ return (
 
 export default NavBar;
 
-
-{/* <NavLink to="/add_pet" >Shop</NavLink>
-            <NavLink to="/sell" >Sell</NavLink>
-            <NavLink to="/cart" >Cart</NavLink> */}

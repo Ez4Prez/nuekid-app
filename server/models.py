@@ -10,31 +10,86 @@ metadata = MetaData(naming_convention={
 
 db = SQLAlchemy(metadata=metadata)
 
-class Activity(db.Model):
-    __tablename__ = "activities"
+class Event(db.Model, SerializerMixin):
+    __tablename__ = "events"
 
-    activity_id = db.Column(db.Integer, primary_key=True)
-    activity_type = db.Column(db.String)
-    activity_location = db.Column(db.Text)
-    activity_time = db.Column(db.Text)
-    activity_date = db.Column(db.Text)
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String)
+    description = db.Column(db.String)
+    event_type = db.Column(db.String)
+    people_needed = db.Column(db.Integer)
+    space_available = db.Column(db.Integer)
+
+    location_id = db.Column(db.Integer, db.ForeignKey('locations.id'))
+    date_id = db.Column(db.Integer, db.ForeignKey('dates.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    location = db.relationship('Location', backref='events', lazy=True)
+    user = db.relationship('User', backref='events', lazy=True)
+
+
     
 
-class User(db.Model):
+class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
-    user_id = db.Column(db.Integer, primary_key=True)
-    user_name = db.Column(db.String)
-    user_email = db.Column(db.String)
-    user_location = db.Column(db.String)
-    user_age = db.Column(db.Integer)
+    id = db.Column(db.Integer, primary_key=True)
+    location = db.Column(db.String)
+    username = db.Column(db.String)
+    full_name = db.Column(db.String)
+    age = db.Column(db.Integer)
 
-class Schedule(db.Model):
-    __tablename__ = 'schedules'
+    user_events = db.relationship('Event', backref='user', lazy=True)
+    dates = db.relationship('Date', backref='user', lazy=True)
 
-    schedule_id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    activity_id = db.Column(db.Integer, db.ForeignKey('activities.activity_id'))
+
+    
+    
+
+class Location(db.Model, SerializerMixin):
+    __tablename__ = 'locations'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    address = db.Column(db.String)
+    coordinates = db.Column(db.String)
+    
+
+    def to_dict(self):
+        return {
+            'id' : self.id,
+            'name' : self.name,
+            'address' : self.address,
+            'coordinates' : self.coordinates,
+        }
+
+
+
+class Date(db.Model, SerializerMixin):
+    __tablename__ = 'dates'
+
+    id = db.Column(db.Integer, primary_key=True)
+    time = db.Column(db.String)
+    day = db.Column(db.String)
+
+    event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
+    # user_id = db.Column(db.Intger, db.ForeignKey('users.id'))
+
+    event = db.relationship('Event', backref='dates', lazy=True)
+    user = db.relationship('User', backref="dates", lazy=True)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "time": self.time,
+            "day": self.day,
+            "event_id" : self.event_id,
+            "user_id": self.user_id
+        }
+
+
+
+
 
 
 
